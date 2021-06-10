@@ -1,4 +1,4 @@
-Django==2.2.7
+Django==2.2.24
 djangorestframework==3.11.0
 djangorestframework-api-key==2.0.0
 pytz==2019.3
