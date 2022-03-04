@@ -133,6 +133,8 @@ REST_FRAMEWORK = {
     ),
 }
 
+API_KEY_CUSTOM_HEADER="HTTP_APP_HEADER"
+
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(hours=8),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),

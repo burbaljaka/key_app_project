@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from .models import *
-from .serializers import UserCredentialsSerializer, ApplicationSerializer, ApplicationKeySerializer
+from .serializers import UserCredentialsSerializer, ApplicationSerializer, ApplicationKeySerializer, UserSerializer
 from rest_framework_api_key.permissions import HasAPIKey
 from rest_framework import mixins, status
 from rest_framework.viewsets import GenericViewSet
@@ -32,9 +32,11 @@ class UserView(mixins.RetrieveModelMixin,
                GenericViewSet):
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class AppKeyView(APIView):
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         app_name = request.data['name']
@@ -55,7 +57,7 @@ class ApplicationManagementView(mixins.CreateModelMixin,
                                 mixins.UpdateModelMixin,
                                 mixins.DestroyModelMixin,
                                 GenericViewSet):
-    permission_classes = [PermissionClass, ]
+    permission_classes = [PermissionClass, IsAuthenticated]
     queryset = Application.objects.all()
     serializer_class = ApplicationSerializer
     lookup_field = "pk"
