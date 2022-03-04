@@ -4,11 +4,18 @@ from .views import *
 #
 # router = SimpleRouter()
 # router.register('test', ApplicationManagementView, basename='application')
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 
 urlpatterns = [
     path('create_key/', AppKeyView.as_view()),
-    path('test/', ApplicationManagementView.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update'}))
+    path('register_user/', RegisteruserView.as_view()),
+    path('test/', ApplicationManagementView.as_view({'get': 'retrieve', 'put': 'update', 'patch': 'partial_update'})),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
 
 # urlpatterns += router.urls
